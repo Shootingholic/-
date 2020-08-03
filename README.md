@@ -31,9 +31,12 @@
 ## 项目完成情况
 * 以[CNNIOT](https://github.com/mfarhadi/CNNIOT)为设计参考，我们构建了可以通过发送不同数据包头来实现不同网络层计算的cnn加速IP核。
 * 对IP核进行了轻量化操作，根据软件计算结果中的精度表示以及结果验证，我们发现小数点后6位的值对于模型的影响不大，因此可以用定点小数来进行网络模型轻量化，减轻片上BRAM的压力。
-* 以[Anguli](https://dsl.cds.iisc.ac.in/projects/Anguli/index.html#about)提供的指纹生成器所产生的指纹数据集，成功运行了方向场提取部分的网络，但是还是由于片上资源有限，输入图像需要实施非常大的压缩率才能将网络完成，因此在指纹方向场的提取效果上并不如预期。
+* 以[Anguli](https://dsl.cds.iisc.ac.in/projects/Anguli/index.html#about)提供的指纹生成器所产生的指纹数据集，成功运行了方向场提取部分的网络（包含18个卷积层，最大输出通道数256），但是还是由于片上资源有限，输入图像需要实施较大的压缩率才能将网络完成，因此在指纹方向场的提取效果上并不如预期。
 * 完善了驱动文件的编写，向原加速器驱动文件中添加了空洞卷积和批量归一化层调用的驱动接口。
 * 编写了方便查看方向场提取结果的可视化软件程序。
+
+## 效果展示
+
 
 
 ## 系统模块通路设计图
@@ -54,15 +57,15 @@
 - 文件说明
 > Weights：权重文件
 
-> Data：示例图片
-
 > Bitstream.tcl : hw
 
 > Bitstream.bit : hw
 
-> Fingernet_DF_FPGA.ipynb : demo program
+> finger_fpga.ipynb : demo program, produce npy array of output
 
 > CNNIOT.py : driver wrapper
+
+> fingerImage.npy : load image to np array
 
 
 ## Doc
